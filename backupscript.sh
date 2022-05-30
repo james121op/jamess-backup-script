@@ -11,13 +11,6 @@ WebsiteContent="/var/www"
 SqlUser="root"
 SqlPass=""
 
-RcloneRemote=""
-RcloneLocation=""
-
-SftpServer="1.1.1.1"
-SftpUser="user"
-SftpPassword="password"
-
 CurrentDate=$(date | sed 's/\ /-/g')
 mkdir $BackupLocation/$CurrentDate
 cp -r {$PterodactylUserData, $NginxConfigs, $WebsiteContent} $BackupLocation/$CurrentDate
