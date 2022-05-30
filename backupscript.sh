@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #prerequirements
-apt install zip
+apt install zip -y
 
 BackupLocation="/backups"
 
@@ -9,15 +9,16 @@ PterodactylUserData="/var/lib/pterodactyl"
 NginxConfigs="/etc/nginx"
 WebsiteContent="/var/www"
 SqlUser="root"
-SqlPass=""
+SqlPass="."
 
-CurrentDate=$(date | sed 's/\ /-/g')
-mkdir $BackupLocation/$CurrentDate
-cp -r {$PterodactylUserData, $NginxConfigs, $WebsiteContent} $BackupLocation/$CurrentDate
-cp $PterodactylUserData $BackupLocation/$CurrentDate
+CurrentDate=$(date | sed 's/\ /_/g')
+mkdir -p $BackupLocation/$CurrentDate
+cp -vr {$PterodactylUserData,$NginxConfigs,$WebsiteContent} $BackupLocation/$CurrentDate
 
 #export mariadb database(s)
-mysqldump -u "$SqlUser" -p "$SqlPass" --all-databases > $BackupLocation/$CurrentDate/databases.sql
+mysqldump --user="$SqlUser" --password="$SqlPass" --all-databases > $BackupLocation/$CurrentDate/databases.sql
 
 #compress
-zip -r9 $CurrentDate.tar.gz $CurrentDate
+zip -r9 $BackupLocation/$CurrentDate.zip $BackupLocation/$CurrentDate
+#remove uncompressed version
+rm -rf $BackupLocation/$CurrentDate
