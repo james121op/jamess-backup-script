@@ -32,6 +32,6 @@ tar --create --xz --verbose --file=$TempLocation/$CurrentDate.tar.xz $TempLocati
 #move zip to network drive
 cp $TempLocation/$CurrentDate.tar.xz $MountPoint
 #unmount Mount Point
-umount $MountPoint
+umount -v $MountPoint
 #remove Temp Location
-rm -rf $TempLocation
+rm --recursive --force $TempLocation
