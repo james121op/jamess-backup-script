@@ -28,9 +28,9 @@ cp -vr {$PterodactylUserData,$NginxConfigs,$WebsiteContent} $TempLocation/$Curre
 mysqldump --user="$SqlUser" --password="$SqlPass" --all-databases > $TempLocation/$CurrentDate/databases.sql
 
 #compress
-zip -r9 $TempLocation/$CurrentDate.zip $TempLocation/$CurrentDate
+zip -cJvf $TempLocation/$CurrentDate.tar.xz $TempLocation/$CurrentDate
 #move zip to network drive
-cp $TempLocation/$CurrentDate.zip $MountPoint
+cp $TempLocation/$CurrentDate.tar.xz $MountPoint
 #unmount Mount Point
 umount $MountPoint
 #remove Temp Location
