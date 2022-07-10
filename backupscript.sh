@@ -33,3 +33,5 @@ zip -r9 $TempLocation/$CurrentDate.zip $TempLocation/$CurrentDate
 cp $TempLocation/$CurrentDate.zip $MountPoint
 #remove Temp Location
 rm -rf $TempLocation
+#unmount Mount Point
+umount $MountPoint
