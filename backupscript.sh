@@ -8,7 +8,7 @@ apt install davfs2 -y
 MountPoint="/backups"
 MountUrl="example.com/backups"
 
-TempLocation="/tmp"
+TempLocation="/TEMP-4124122421352324112424"
 
 PterodactylUserData="/var/lib/pterodactyl"
 NginxConfigs="/etc/nginx"
