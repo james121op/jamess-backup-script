@@ -3,7 +3,7 @@
 #prerequirements
 apt install zip -y
 apt install davfs2 -y
-
+sudo apt install xz-utils -y
 
 MountPoint="/backups"
 MountUrl="example.com/backups"
