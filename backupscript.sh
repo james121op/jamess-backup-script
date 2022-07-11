@@ -20,7 +20,7 @@ SqlPass=""
 mkdir /backups
 mount --types davfs $MountUrl $MountPoint
 
-CurrentDate=$(date | sed 's/\ /_/g' | sed 's/\:/_/g')
+CurrentDate=$(date --utc | sed 's/\ /_/g' | sed 's/\:/_/g')
 mkdir --verbose --parents $TempLocation/$CurrentDate
 cp --verbose --recursive {$PterodactylUserData,$NginxConfigs,$WebsiteContent} $TempLocation/$CurrentDate
 
