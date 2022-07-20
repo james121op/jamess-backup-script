@@ -32,4 +32,4 @@ cp $TempLocation/$CurrentDate.tar.gz $MountPoint
 #unmount Mount Point
 umount -v $MountPoint
 #remove Temp Location
-rm --recursive --force $TempLocation
+rm --verbose --recursive --force $TempLocation
