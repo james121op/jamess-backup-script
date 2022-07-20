@@ -26,7 +26,7 @@ cp --verbose --recursive {$PterodactylUserData,$NginxConfigs,$WebsiteContent} $T
 mysqldump --user="$SqlUser" --password="$SqlPass" --all-databases > $TempLocation/$CurrentDate/databases.sql
 
 #compress
-tar --create --gzip --verbose --file=$TempLocation/$CurrentDate.tar.xz $TempLocation/$CurrentDate
+tar --create --gzip --verbose --file=$TempLocation/$CurrentDate.tar.gz $TempLocation/$CurrentDate
 #move zip to network drive
 cp $TempLocation/$CurrentDate.tar.xz $MountPoint
 #unmount Mount Point
