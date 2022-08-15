@@ -6,7 +6,9 @@ apt install davfs2 -y
 MountPoint="/backups"
 MountUrl="example.com/backups"
 
-TempLocation="/TEMP-4124122421352324112424"
+#create random number
+RandNum=$(shuf -i 1000000000-9999999999 -n 1)
+TempLocation="/TEMP-$RandNum"
 
 PterodactylUserData="/var/lib/pterodactyl"
 NginxConfigs="/etc/nginx"
