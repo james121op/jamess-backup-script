@@ -17,19 +17,31 @@ SqlPass=""
 #mount netwrok drive, for automatic auth look in /etc/davfs2/secrets
 mkdir /backups
 mount --types davfs $MountUrl $MountPoint
+echo "mounted"
+sleep 2
 
 CurrentDate=$(date --utc | sed 's/\ /_/g' | sed 's/\:/_/g')
 mkdir --verbose --parents $TempLocation/$CurrentDate
 cp --verbose --recursive {$PterodactylUserData,$NginxConfigs,$WebsiteContent} $TempLocation/$CurrentDate
+echo "copied to temp location"
+sleep 2
 
 #export mariadb database(s)
 mysqldump --user="$SqlUser" --password="$SqlPass" --all-databases > $TempLocation/$CurrentDate/databases.sql
 
 #compress
 tar --create --gzip --verbose --file=$TempLocation/$CurrentDate.tar.gz $TempLocation/$CurrentDate
+echo "compress files"
+sleep 2
 #move zip to network drive
 cp $TempLocation/$CurrentDate.tar.gz $MountPoint
+echo "copy files to mount point"
+sleep 2
 #unmount Mount Point
 umount -v $MountPoint
+echo "unmount mount point"
+sleep 2
 #remove Temp Location
-rm --verbose --recursive --force $TempLocation
+rm --recursive --force $TempLocation
+echo "remove temp location"
+sleep 2
