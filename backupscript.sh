@@ -34,7 +34,7 @@ mysqldump --user="$SqlUser" --password="$SqlPass" --all-databases > $TempLocatio
 #compress
 tar --create --gzip --verbose --file=$TempLocation/$CurrentDate.tar.gz $TempLocation/$CurrentDate
 #move zip to network drive
-cp $TempLocation/$CurrentDate.tar.gz $MountPoint
+cp --verbose $TempLocation/$CurrentDate.tar.gz $MountPoint
 #unmount Mount Point
 umount -v $MountPoint
 #remove Temp Location
