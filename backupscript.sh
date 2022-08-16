@@ -17,7 +17,7 @@ SqlUser="root"
 SqlPass=""
 
 #mount netwrok drive, for automatic auth look in /etc/davfs2/secrets
-mkdir /backups
+mkdir --parents $MountPoint
 mount --types davfs $MountUrl $MountPoint
 if [ $? -ne 0 ]; then
     echo "failed mounting"
@@ -35,7 +35,7 @@ mysqldump --user="$SqlUser" --password="$SqlPass" --all-databases > $TempLocatio
 tar --create --gzip --verbose --file=$TempLocation/$CurrentDate.tar.gz $TempLocation/$CurrentDate
 #move zip to network drive
 cp --verbose $TempLocation/$CurrentDate.tar.gz $MountPoint
-#unmount Mount Point
-umount -v $MountPoint
+#temp fix for archive not uploading
+umount -v $MountPoint && mount --types davfs $MountUrl $MountPoint && umount -v $MountPoint
 #remove Temp Location
-rm --recursive --force $TempLocation
+rm --recursive --force {$TempLocation,$MountPoint}
