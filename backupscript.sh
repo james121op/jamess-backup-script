@@ -18,8 +18,7 @@ SqlPass=""
 
 #mount netwrok drive, for automatic auth look in /etc/davfs2/secrets
 mkdir --parents $MountPoint
-mount --types davfs $MountUrl $MountPoint
-if [ $? -ne 0 ]; then
+if ! mount --types davfs $MountUrl $MountPoint ; then
     echo "failed mounting"
     exit 1
 fi
